@@ -14,18 +14,18 @@ public class Music extends Thread {
 	private FileInputStream fls;
 	private BufferedInputStream bis;
 	
-//	public Music(String name, boolean isLoop) {
-//		try {
-//			this.isLoop = isLoop;
-//			file = new File(Main.class.getResource("../music/" + name).toURI()); 
-//			fls = new FileInputStream(file);
-//			bis = new BufferedInputStream(fls);
-//			player = new Player(bis);
-//		}
-//		catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		
+	public Music(String name, boolean isLoop) {
+		try {
+			this.isLoop = isLoop;
+			file = new File(Main.class.getResource("../music/" + name).toURI()); 
+			fls = new FileInputStream(file);
+			bis = new BufferedInputStream(fls);
+			player = new Player(bis);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 //	public int getTime() {
 //		if (player == null) {
 //			return 0;
@@ -47,14 +47,13 @@ public class Music extends Thread {
 //				fls = new FileInputStream(file);
 //				bis = new BufferedInputStream(fls);
 //				player = new Player(bis);
-//			} while (isLoop);	
-//		}
+//			} while (isLoop);			}
 //		catch (Exception e) {
 //			System.out.println(e.getMessage());
 //		}
 //	}
-	
-	
-//	}
+//	
+//	
+	}
 
 }
