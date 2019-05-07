@@ -45,6 +45,11 @@ public class DynamicBeat extends JFrame {
 			
 	}
 	
+	//Add intro music
+//	Music introMusic = new Music("intromusic.mp3", true);
+	
+	
+	
 	//Methods
 	//1) Paint method
 	//Extend JFrame class to create your own frame class so that you can override the paint() method. 
