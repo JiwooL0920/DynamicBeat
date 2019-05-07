@@ -42,12 +42,13 @@ public class DynamicBeat extends JFrame {
 		//retrieve introBackground.jpg and put into introBackground variable
 		//Having Main.class as a reference point get the resource from file path; reset variable introBackground to that file
 		introBackground = new ImageIcon(Main.class.getResource("/images/introBackground.jpg")).getImage(); //tutorial has it "../images/introBackground.jpg" but this doesn't work for me?? 
-			
+		
+		//Add intro music
+		Music introMusic = new Music("intromusic.mp3", true);
+		introMusic.start();
+		
 	}
-	
-	//Add intro music
-//	Music introMusic = new Music("intromusic.mp3", true);
-	
+
 	
 	
 	//Methods
