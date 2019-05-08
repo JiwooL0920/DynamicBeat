@@ -55,6 +55,19 @@ public class DynamicBeat extends JFrame {
 	private ImageIcon quitButtonEnteredImage = new ImageIcon(Main.class.getResource("/images/quitButtonEntered.png"));
 	private ImageIcon quitButtonBasicImage = new ImageIcon(Main.class.getResource("/images/quitButtonBasic.png"));
 	private JButton quitButton = new JButton(quitButtonBasicImage);
+	
+	//Left Button
+	private ImageIcon leftButtonEnteredImage = new ImageIcon(Main.class.getResource("/images/leftButtonEntered.png"));
+	private ImageIcon leftButtonBasicImage = new ImageIcon(Main.class.getResource("/images/leftButtonBasic.png"));
+	private JButton leftButton = new JButton(leftButtonBasicImage);
+	
+	//Right Button
+	private ImageIcon rightButtonEnteredImage = new ImageIcon(Main.class.getResource("/images/rightButtonEntered.png"));
+	private ImageIcon rightButtonBasicImage = new ImageIcon(Main.class.getResource("/images/rightButtonBasic.png"));
+	private JButton rightButton = new JButton(rightButtonBasicImage);
+	
+	//Title Image
+	private Image titleImage = new ImageIcon(Main.class.getResource("/images/Cool Title Image.png")).getImage();
 
 
 	//Make the screen move when we drag menu bar
@@ -145,6 +158,8 @@ public class DynamicBeat extends JFrame {
 				//Game Start Event--come back later
 				startButton.setVisible(false);
 				quitButton.setVisible(false);
+				leftButton.setVisible(true);
+				rightButton.setVisible(true);
 				background = new ImageIcon(Main.class.getResource("../images/mainBackground.jpg")).getImage();
 				isMainScreen = true;
 			}
@@ -183,6 +198,64 @@ public class DynamicBeat extends JFrame {
 			}
 		});
 		add(quitButton);
+		
+		//Left Button
+		leftButton.setVisible(false); //make it so that it's not visible in the beginning
+		leftButton.setBounds(140, 310, 60, 60); 
+		leftButton.setBorderPainted(false); 
+		leftButton.setContentAreaFilled(false);
+		leftButton.setFocusPainted(false);
+		leftButton.addMouseListener(new MouseAdapter() {
+			//@Override
+			public void mouseEntered(MouseEvent e) { 
+				leftButton.setIcon(leftButtonEnteredImage);
+				leftButton.setCursor(new Cursor(Cursor.HAND_CURSOR)); //change the icon of the mouse cursor 
+				Music buttonEnteredMusic = new Music("buttonEnteredMusic.mp3", false); //play only once
+				buttonEnteredMusic.start();
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				leftButton.setIcon(leftButtonBasicImage);
+				leftButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+			
+			public void mousePressed(MouseEvent e) {
+				Music buttonEnteredMusic = new Music("buttonPressedMusic.mp3", false); //play only once
+				buttonEnteredMusic.start();
+				//Left Button Event
+				
+			}
+		});
+		add(leftButton);
+		
+		//Right Button
+		rightButton.setVisible(false);
+		rightButton.setBounds(1080, 310, 60, 60); 
+		rightButton.setBorderPainted(false); 
+		rightButton.setContentAreaFilled(false);
+		rightButton.setFocusPainted(false);
+		rightButton.addMouseListener(new MouseAdapter() {
+			//@Override
+			public void mouseEntered(MouseEvent e) { 
+				rightButton.setIcon(rightButtonEnteredImage);
+				rightButton.setCursor(new Cursor(Cursor.HAND_CURSOR)); //change the icon of the mouse cursor 
+				Music buttonEnteredMusic = new Music("buttonEnteredMusic.mp3", false); //play only once
+				buttonEnteredMusic.start();
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				rightButton.setIcon(rightButtonBasicImage);
+				rightButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+			
+			public void mousePressed(MouseEvent e) {
+				Music buttonEnteredMusic = new Music("buttonPressedMusic.mp3", false); //play only once
+				buttonEnteredMusic.start();
+				//Right Button Event
+				
+			}
+		});
+		add(rightButton);
 		
 		//Menubar
 		menuBar.setBounds(0, 0, 1280, 30); // declares position and size of menubar
@@ -230,11 +303,12 @@ public class DynamicBeat extends JFrame {
 	// 2) screenDraw method
 	// There are two ways to draw: drawimage and paintcomponents
 	public void screenDraw(Graphics g) {
-		g.drawImage(background, 0, 0, null);
+		g.drawImage(background, 0, 0, null); //generally, we use drawImage to draw moving images
 		if (isMainScreen) {
 			g.drawImage(selectedImage, 340, 100, null);
+			g.drawImage(titleImage, 340, 70, null);
 		}
-		paintComponents(g); // draws the images in the screen image (menubar stays constant; doesn't change. therefore use paintcomponent not drawimage)
+		paintComponents(g); // draws the images in the screen image (menubar stays constant; doesn't change. therefore use paintcomponent not drawimage), draws all the "add()" components
 		this.repaint(); // calling the paint method again
 		// Way this works: the computer paints the screen at every moment until the
 		// program terminates
