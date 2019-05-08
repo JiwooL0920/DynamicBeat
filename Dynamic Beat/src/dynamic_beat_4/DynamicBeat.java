@@ -1,8 +1,12 @@
 package dynamic_beat_4;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,10 +38,18 @@ public class DynamicBeat extends JFrame {
 	// variable introBackground to that file
 	private Image introBackground = new ImageIcon(Main.class.getResource("../images/introBackground.jpg")).getImage(); // tutorial																										// has																												// me??
 	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("../images/menuBar.png"))); 
+	
+	//Buttons	
+	private ImageIcon exitButtonEnteredImage = new ImageIcon(Main.class.getResource("/images/exitButtonEntered.png"));
+	private ImageIcon exitButtonBasicImage = new ImageIcon(Main.class.getResource("/images/exitButtonBasic.png"));
+	
+	private JButton exitButton = new JButton(exitButtonBasicImage); //basic default button is exitButtonBasicImage
 
-	//Buttons
-//	private JButton exitButton = new JButton(new ImageIcon(Main.class.getResource("/images/exitButtonBasic.png")));
 
+	//Make the screen move when we drag menu bar
+	private int mouseX, mouseY;
+	
+	
 	// DynamicBeat() is a constructor
 	// Constructor is a method that has the same name as the class
 	// A constructor in Java is a special method that is used to initialize objects.
@@ -57,11 +69,64 @@ public class DynamicBeat extends JFrame {
 		setBackground(new Color(0, 0, 0, 0)); // paintcomponent changes to white
 		setLayout(null); // button and layout gets located right on spot we declared
 
+		//Exit button
+		//Notice that the exit button must be declared before menu bar so that it gets placed on top of the menu bar
+		exitButton.setBounds(1245, 0, 30, 30); //put exit button on the rightmost side of the menu bar
+		exitButton.setBorderPainted(false); //need to set JButton so that it fits our button image
+		exitButton.setContentAreaFilled(false);
+		exitButton.setFocusPainted(false);
+		exitButton.addMouseListener(new MouseAdapter() {
+			//@Override
+			//When mouse is on top of the exit button
+			public void mouseEntered(MouseEvent e) { 
+				exitButton.setIcon(exitButtonEnteredImage);
+				exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR)); //change the icon of the mouse cursor 
+				Music buttonEnteredMusic = new Music("buttonEnteredMusic.mp3", false); //play only once
+				buttonEnteredMusic.start();
+			}
+			//When mouse gets out of the exit button
+			public void mouseExited(MouseEvent e) {
+				exitButton.setIcon(exitButtonBasicImage);
+				exitButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+			//When exit button is pressed
+			public void mousePressed(MouseEvent e) {
+				Music buttonEnteredMusic = new Music("buttonPressedMusic.mp3", false); //play only once
+				buttonEnteredMusic.start();
+				//In order to prevent music not being heard (becaue the program exits immediately, make it so that the program 
+				//terminates 1 sec later the music plays
+				try {
+					Thread.sleep(1000);
+				}
+				catch (InterruptedException ex) {
+					ex.printStackTrace();
+				}
+				System.exit(0); //exit the game
+			}
+		});
+		add(exitButton);
+		
+		//Menubar
 		menuBar.setBounds(0, 0, 1280, 30); // declares position and size of menubar
+		menuBar.addMouseListener(new MouseAdapter() {
+//			@Override
+			public void mousePressed(MouseEvent e) { //when a mouse event occurs, retrieve the x and y coordinates of the mouse
+				mouseX = e.getX();
+				mouseY = e.getY();
+			}
+		});
+		
+		menuBar.addMouseMotionListener(new MouseMotionAdapter() {
+			//@Override
+			public void mouseDragged(MouseEvent e) { // whenever mouse is dragged, get x,y position of the mouse and move the screen accordingly
+				int x = e.getXOnScreen(); 
+				int y = e.getYOnScreen();
+				setLocation(x-mouseX, y-mouseY);
+			}
+		});
 		add(menuBar); // adds menubar to jframe
 
-//		exitButton.setBounds(50, 50, 30, 30);
-//		add(exitButton);
+		
 
 		// Add intro music
 		Music introMusic = new Music("intromusic.mp3", true);
