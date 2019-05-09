@@ -37,6 +37,19 @@ public class Track {
 	public void setGameMusic(String gameMusic) {
 		this.gameMusic = gameMusic;
 	}
+	
+	//Add a constructor--when we make new variables with the Track class, reset the current inner values
+	public Track(String titleImage, String startImage, String gameImage,
+			String startMusic, String gameMusic) {
+		super();
+		this.titleImage = titleImage;
+		this.startImage = startImage;
+		this.gameImage = gameImage;
+		this.startMusic = startMusic;
+		this.gameMusic = gameMusic;
+	}
+	
+	
 	 
 
 }

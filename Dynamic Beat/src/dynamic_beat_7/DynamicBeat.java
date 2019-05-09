@@ -36,8 +36,7 @@ public class DynamicBeat extends JFrame {
 
 	// retrieve background.jpg and put into background variable
 	// Having Main.class as a reference point get the resource from file path; reset
-	// variable background to that file
-	private Image selectedImage = new ImageIcon(Main.class.getResource("../images/Cool Start Image.png")).getImage(); 																									
+	// variable background to that file						
 	private Image background = new ImageIcon(Main.class.getResource("../images/introBackground.jpg")).getImage(); 																									
 	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("../images/menuBar.png"))); 
 	
@@ -67,8 +66,8 @@ public class DynamicBeat extends JFrame {
 	private ImageIcon rightButtonBasicImage = new ImageIcon(Main.class.getResource("/images/rightButtonBasic.png"));
 	private JButton rightButton = new JButton(rightButtonBasicImage);
 	
-	//Title Image
-	private Image titleImage = new ImageIcon(Main.class.getResource("/images/Cool Title Image.png")).getImage();
+	
+	
 
 
 	//Make the screen move when we drag menu bar
@@ -78,7 +77,14 @@ public class DynamicBeat extends JFrame {
 	private boolean isMainScreen = false; //initially not on main screen therefore false
 	
 	//Track class
+	//make an arraylist that can keep track of the title and music of a track
 	ArrayList<Track> trackList = new ArrayList<Track>();
+	
+	private Image titleImage;
+	private Image selectedImage;
+	private Music selectedMusic;
+	private int nowSelected = 0; //index 0 (first track)
+	
 	
 	
 	// DynamicBeat() is a constructor
@@ -103,6 +109,17 @@ public class DynamicBeat extends JFrame {
 		// Add intro music
 		final Music introMusic = new Music("introMusic.mp3", true); //final???? get back
 		introMusic.start();
+		
+		//Index 0: Cool-Tobu
+		trackList.add(new Track("Cool Title Image.png", "Cool Start Image.png", "Cool Game Image.png",
+				"Cool-Tobu Selected.mp3", "Cool-Tobu.mp3"));
+		//Index 1: Dreams-Joakim Karud
+		trackList.add(new Track("Dreams Title Image.png", "Dreams Start Image.png", "Dreams Game Image.png",
+				"Dreams-Joakim Karud Selected.mp3", "Dreams-Joakim Karud.mp3"));
+		//Index 2: We Are One-Vexento
+		trackList.add(new Track("We Are One Title Image.png", "We Are One Start Image.png", "We Are One Game Image.png",
+				"We Are One-Vexento Selected.mp3", "We Are One-Vexento.mp3"));
+		
 
 		//Exit button
 		//Notice that the exit button must be declared before menu bar so that it gets placed on top of the menu bar
@@ -164,9 +181,7 @@ public class DynamicBeat extends JFrame {
 				Music buttonEnteredMusic = new Music("buttonPressedMusic.mp3", false); //play only once
 				buttonEnteredMusic.start();
 				introMusic.close(); //close the intro music once we move onto main screen
-				Music selectedMusic = new Music("Cool-Tobu Selected.mp3",true);
-				selectedMusic.start();
-				
+				selectTrack(0);
 				//Game Start Event
 				startButton.setVisible(false);
 				quitButton.setVisible(false);
@@ -235,6 +250,7 @@ public class DynamicBeat extends JFrame {
 				Music buttonEnteredMusic = new Music("buttonPressedMusic.mp3", false); //play only once
 				buttonEnteredMusic.start();
 				//Left Button Event
+				selectLeft();
 				
 			}
 		});
@@ -264,6 +280,7 @@ public class DynamicBeat extends JFrame {
 				Music buttonEnteredMusic = new Music("buttonPressedMusic.mp3", false); //play only once
 				buttonEnteredMusic.start();
 				//Right Button Event
+				selectRight();
 				
 			}
 		});
@@ -322,6 +339,36 @@ public class DynamicBeat extends JFrame {
 		this.repaint(); // calling the paint method again
 		// Way this works: the computer paints the screen at every moment until the
 		// program terminates
+	}
+	
+	//function for Track
+	//input the # of the currently selected track
+	public void selectTrack(int nowSelected) {
+		if (selectedMusic != null) 
+			selectedMusic.close();
+		//change titleImage and selectedImage to the one that corresponds to the selected track
+		titleImage = new ImageIcon(Main.class.getResource("/images/" + trackList.get(nowSelected).getTitleImage())).getImage(); //get value of the TitleImage
+		selectedImage = new ImageIcon(Main.class.getResource("/images/" + trackList.get(nowSelected).getStartImage())).getImage(); //get value of the TitleImage
+		selectedMusic = new Music(trackList.get(nowSelected).getStartMusic(), true);
+		selectedMusic.start();
+	}
+	
+	//Select Left
+	public void selectLeft() {
+		if (nowSelected == 0) 
+			nowSelected = trackList.size()-1;
+		else
+			nowSelected--;
+		selectTrack(nowSelected);
+	}
+	
+	//Select Right
+	public void selectRight() {
+		if (nowSelected == trackList.size()-1)
+			nowSelected = 0;
+		else
+			nowSelected++;
+		selectTrack(nowSelected);
 	}
 
 }
