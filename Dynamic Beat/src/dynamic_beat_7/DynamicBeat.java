@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -75,6 +76,9 @@ public class DynamicBeat extends JFrame {
 	
 	//Screen
 	private boolean isMainScreen = false; //initially not on main screen therefore false
+	
+	//Track class
+	ArrayList<Track> trackList = new ArrayList<Track>();
 	
 	
 	// DynamicBeat() is a constructor
@@ -160,7 +164,7 @@ public class DynamicBeat extends JFrame {
 				Music buttonEnteredMusic = new Music("buttonPressedMusic.mp3", false); //play only once
 				buttonEnteredMusic.start();
 				introMusic.close(); //close the intro music once we move onto main screen
-				Music selectedMusic = new Music("Cool-Tobu.mp3",true);
+				Music selectedMusic = new Music("Cool-Tobu Selected.mp3",true);
 				selectedMusic.start();
 				
 				//Game Start Event
