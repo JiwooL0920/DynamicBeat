@@ -790,7 +790,7 @@ public class Game extends Thread {
 		if (judge.equals("Early")) {
 			judgeImage = new ImageIcon(Main.class.getResource("../images/judgeEarly.png")).getImage();
 			score += 5;
-			combo += 0;
+			combo = 0;
 		}
 		else if (judge.equals("Good")) {
 			judgeImage = new ImageIcon(Main.class.getResource("../images/judgeGood.png")).getImage();
@@ -810,7 +810,7 @@ public class Game extends Thread {
 		else if (judge.equals("Late")) {
 			judgeImage = new ImageIcon(Main.class.getResource("../images/judgeLate.png")).getImage();
 			score += 5;
-			combo += 0;
+			combo = 0;
 		}
 		
 	}
