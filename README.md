@@ -20,7 +20,7 @@ This game uses the **Javazoom** external library provided [here](http://www.java
 
 # How to run this project
 ## Prerequisites
-* Eclipse (or any other Java text editor)
+* Eclipse (or any other Java editor)
 * Java JDK/JRE installed on your local machine (I used JavaSE 1.7 for the JRE System Library for my project; other versions (especially the later ones) may not be compatible to use the Javazoom library)
 * Javazoom external library (I have it uploaded in ~/DynamicBeat/lib)
 
