@@ -1,6 +1,6 @@
 # Overview
 **Name:** Jiwoo Lee  
-**Last Update:** May 10, 2018 
+**Last Update:** May 11, 2018 
 
 **Note:** This game may not run properly on Mac platforms as Java Swing is built primarily to run based on Windows platform's look and feel.
 
@@ -9,7 +9,10 @@ The tracks, images, and sound effects are all retrieved from copyright-free sour
 # Descriptions
 A study repo to build a rhythm game in Java as a personal project to learn Java programming during summer break; followed online tutorials provided [here](https://blog.naver.com/ndb796/220997028385).
 
-This game uses the **Javazoom** external library provided [here](http://www.javazoom.net/index.shtml) to implement music files. There are a total of 3 tracks in this game, and the player can choose the music and difficulty they wish to play the game with. The objective of this game is to press the respective key at which the note is dropping at the right timing to earn points.
+There are a total of 3 tracks in this game, and the player can choose the music and difficulty they wish to play the game with. The objective of this game is to press the respective key at which the note is dropping at the right timing to earn points.
+
+This game uses the **Javazoom** external library provided [here](http://www.javazoom.net/index.shtml) to implement music files, and uses **Java Swing** GUI widget toolkit (which is a part of Oracle's Java Foundation Classes (JFC)) to develop the GUI component of the game.
+
 
 ## A Short Demonstration of the Game
 ![](DynamicBeat.gif)
@@ -81,3 +84,4 @@ This game uses the **Javazoom** external library provided [here](http://www.java
 * This is placed at the very bottom of the game screen next to score
 
 # What I learned 
+Overall, I think this project served its purpose well--from going through the tutorials and working on the game from the bottom up, I've learned lots of valuable skills not only in Java but also practical programming in general. I've came to really appreciate how Java classes work and interact with each other to form a final product, and how efficient this method of program organization can be. One of the most important things this project has taught me is problem solving skills and perseverence. Although the tutorials are very well made with detailed background information, there were many aspects of the code/setup that didn't really worked on my local machine, so I had to constantly go through troubleshooting/debugging/refactoring processes to get it working. I've learned to make use of google and Stack Overflow (Although I've used this website several times, it's my first time to post my own questions. Some of the posts I made for this project can be found [here](https://stackoverflow.com/questions/56013975/im-having-trouble-importing-javazoom-library-in-eclipse) and [here](https://stackoverflow.com/questions/56028383/java-menubar-hiding-background-image)), which is a valuable skill needed in my programming career. From this experience, I can say with confidence that it has taught me enough to continue learning Java programming and develop another GUI application on my own. 
