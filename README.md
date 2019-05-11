@@ -64,7 +64,7 @@ This game uses the **Javazoom** external library provided [here](http://www.java
 * When pressed, **S**, **D**, **F**,**J**, **K**, and **L** keys make a symbol sound and **Space Bar** makes a snare drum sound
 
 
-## 6) Judgement of the Note
+## 6) Judgment of the Note
 * There are a total of 6 categories of note judgements with corresponding points granted:  
     **1) Early:** 5 pts  
     **2) Good:** 20 pts  
