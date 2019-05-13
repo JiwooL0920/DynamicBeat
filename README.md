@@ -1,6 +1,7 @@
 # Overview
 **Name:** Jiwoo Lee  
-**Last Update:** May 11, 2018 
+**Last Update:** May 13, 2018 
+**Latest Package:** dynamic_beat_17
 
 **Note:** This game may not run properly on Mac platforms as Java Swing is built primarily to run based on Windows platform's look and feel.
 
